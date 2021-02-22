@@ -1,4 +1,4 @@
-# Tech Training Case-study by Arpit Gupta
+# Shoppers Den Case-study for Tech Training by Arpit Gupta
 
 ### In Repository:
 * "shoppersdendb" is database file (to be imported on PGAdmin)
