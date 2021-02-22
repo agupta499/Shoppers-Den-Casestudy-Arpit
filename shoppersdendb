@@ -1,0 +1,346 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.1
+-- Dumped by pg_dump version 13.1
+
+-- Started on 2021-02-22 00:14:48 IST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE shoppersdendb;
+--
+-- TOC entry 3296 (class 1262 OID 16485)
+-- Name: shoppersdendb; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE shoppersdendb WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'C';
+
+
+ALTER DATABASE shoppersdendb OWNER TO postgres;
+
+\connect shoppersdendb
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 204 (class 1259 OID 16530)
+-- Name: cart_products; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cart_products (
+    cart_id_ref integer NOT NULL,
+    product_id_ref integer NOT NULL,
+    date_added date,
+    quantity integer
+);
+
+
+ALTER TABLE public.cart_products OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 16520)
+-- Name: carts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.carts (
+    cart_id integer NOT NULL,
+    user_id_ref integer
+);
+
+
+ALTER TABLE public.carts OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16507)
+-- Name: category; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.category (
+    cid integer NOT NULL,
+    cname character varying
+);
+
+
+ALTER TABLE public.category OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 16545)
+-- Name: orders; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.orders (
+    order_id integer NOT NULL,
+    date_placed date,
+    cart_id_ref integer,
+    user_id_ref integer,
+    date_delivered date,
+    amount integer,
+    payment_mode character varying,
+    paid boolean
+);
+
+
+ALTER TABLE public.orders OWNER TO postgres;
+
+--
+-- TOC entry 201 (class 1259 OID 16499)
+-- Name: products; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.products (
+    pid integer NOT NULL,
+    pname character varying,
+    date date,
+    price integer,
+    quantity integer,
+    description character varying,
+    pro_cat_ref integer
+);
+
+
+ALTER TABLE public.products OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 16486)
+-- Name: user_data; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_data (
+    uid integer NOT NULL,
+    name character varying NOT NULL,
+    email character varying NOT NULL,
+    password character varying NOT NULL,
+    secque character varying,
+    answer character varying,
+    address character varying,
+    phone bigint,
+    roleid integer
+);
+
+
+ALTER TABLE public.user_data OWNER TO postgres;
+
+--
+-- TOC entry 3289 (class 0 OID 16530)
+-- Dependencies: 204
+-- Data for Name: cart_products; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3288 (class 0 OID 16520)
+-- Dependencies: 203
+-- Data for Name: carts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.carts (cart_id, user_id_ref) VALUES (364, 701);
+INSERT INTO public.carts (cart_id, user_id_ref) VALUES (942, 846);
+INSERT INTO public.carts (cart_id, user_id_ref) VALUES (405, 343);
+INSERT INTO public.carts (cart_id, user_id_ref) VALUES (173, 662);
+INSERT INTO public.carts (cart_id, user_id_ref) VALUES (779, 179);
+INSERT INTO public.carts (cart_id, user_id_ref) VALUES (72, 264);
+INSERT INTO public.carts (cart_id, user_id_ref) VALUES (832, 446);
+INSERT INTO public.carts (cart_id, user_id_ref) VALUES (171, 947);
+INSERT INTO public.carts (cart_id, user_id_ref) VALUES (311, 532);
+INSERT INTO public.carts (cart_id, user_id_ref) VALUES (293, 707);
+
+
+--
+-- TOC entry 3287 (class 0 OID 16507)
+-- Dependencies: 202
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.category (cid, cname) VALUES (23, 'txr8fqDf');
+INSERT INTO public.category (cid, cname) VALUES (76, '1x6Dg7Jq');
+INSERT INTO public.category (cid, cname) VALUES (57, 'kqTJ0EiV');
+INSERT INTO public.category (cid, cname) VALUES (87, 'e2SYVKlt');
+INSERT INTO public.category (cid, cname) VALUES (32, 'BpESQPfu');
+INSERT INTO public.category (cid, cname) VALUES (30, 'J8Ghbjg6');
+INSERT INTO public.category (cid, cname) VALUES (85, 'Phone');
+
+
+--
+-- TOC entry 3290 (class 0 OID 16545)
+-- Dependencies: 205
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.orders (order_id, date_placed, cart_id_ref, user_id_ref, date_delivered, amount, payment_mode, paid) VALUES (3323, '2021-02-20', 364, 701, '2021-02-24', 1396, 'Credit', true);
+INSERT INTO public.orders (order_id, date_placed, cart_id_ref, user_id_ref, date_delivered, amount, payment_mode, paid) VALUES (9078, '2021-02-20', 171, 947, '2021-02-22', 4227, 'UPI', true);
+INSERT INTO public.orders (order_id, date_placed, cart_id_ref, user_id_ref, date_delivered, amount, payment_mode, paid) VALUES (7309, '2021-02-21', 293, 707, '2021-02-25', 1796, 'UPI', true);
+
+
+--
+-- TOC entry 3286 (class 0 OID 16499)
+-- Dependencies: 201
+-- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.products (pid, pname, date, price, quantity, description, pro_cat_ref) VALUES (1547, 'jAODfPK', '2021-02-20', 1396, 6, 'QaYE0YcY0kib', 30);
+INSERT INTO public.products (pid, pname, date, price, quantity, description, pro_cat_ref) VALUES (7870, 'ZiFAqrX', '2021-02-20', 3577, 6, 'Bn5BTw7bHk4u', 30);
+INSERT INTO public.products (pid, pname, date, price, quantity, description, pro_cat_ref) VALUES (5491, '7Z4M6PP', '2021-02-20', 504, 10, 'rcrgiVHqnL9c', 30);
+INSERT INTO public.products (pid, pname, date, price, quantity, description, pro_cat_ref) VALUES (4720, 'o0mdUNe', '2021-02-20', 2651, 2, 'hpvzZm4CGocy', 30);
+INSERT INTO public.products (pid, pname, date, price, quantity, description, pro_cat_ref) VALUES (8927, 'dJgzQvX', '2021-02-20', 757, 5, 'fjPQTVF4fL6k', 30);
+INSERT INTO public.products (pid, pname, date, price, quantity, description, pro_cat_ref) VALUES (4413, 'fY6RKj7', '2021-02-20', 788, 4, 'DOvQO432PmsM', 30);
+INSERT INTO public.products (pid, pname, date, price, quantity, description, pro_cat_ref) VALUES (4613, 'MI TV', '2021-02-20', 23000, 20, 'Good TV. 43 inches.', 23);
+INSERT INTO public.products (pid, pname, date, price, quantity, description, pro_cat_ref) VALUES (7727, 'grMQoMA', '2021-02-20', 6543, 7, 'VyTfP6i477Bd', 30);
+
+
+--
+-- TOC entry 3285 (class 0 OID 16486)
+-- Dependencies: 200
+-- Data for Name: user_data; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.user_data (uid, name, email, password, secque, answer, address, phone, roleid) VALUES (701, 'ay08nz', '6DOcUv@gmail.com', 'U3tpyh7V', '5KAXWg9TAX', 'OH1zP', 'huh4UVj', 912351785, 1);
+INSERT INTO public.user_data (uid, name, email, password, secque, answer, address, phone, roleid) VALUES (846, 'S6YWkM', '7HLNy2@gmail.com', 'z2F0lP37', 'ytTHyLG5Bl', '1qy3N', 'b3lPZDt', 912433739, 1);
+INSERT INTO public.user_data (uid, name, email, password, secque, answer, address, phone, roleid) VALUES (343, 'KlLEQo', '9Eeop4@gmail.com', 'nvNuqGqr', 'uxU9KjIQKP', 'qPh5x', 'KmglseK', 912390357, 1);
+INSERT INTO public.user_data (uid, name, email, password, secque, answer, address, phone, roleid) VALUES (662, 'PHO6Qm', 'Fbl2E1@gmail.com', 'DUiPRaRb', 'nBubOmllx9', 'qGj6N', 'PcZRBSb', 912442039, 2);
+INSERT INTO public.user_data (uid, name, email, password, secque, answer, address, phone, roleid) VALUES (179, 'iENoJ8', 'okOnPU@gmail.com', 'MFcBgGyb', 'mexqZyomGt', 'fHMUG', 'WDCrxGr', 912403293, 2);
+INSERT INTO public.user_data (uid, name, email, password, secque, answer, address, phone, roleid) VALUES (264, 'nc69Lb', '1EjHeP@gmail.com', 'yiPLcCbF', 'VYZiEJ6QEK', 'XaBZR', '3Q2sscj', 912364812, 2);
+INSERT INTO public.user_data (uid, name, email, password, secque, answer, address, phone, roleid) VALUES (446, 'Arpit', 'arpit@gmail.com', 'Arpit@123', 'Nick Name?', 'Honey', 'Alwar, Rajasthan', 7987651234, 2);
+INSERT INTO public.user_data (uid, name, email, password, secque, answer, address, phone, roleid) VALUES (947, 'Honey', 'asdfgh', '1234', 'wefgh', 'xcvghyu', 'sdfvghytred', 23456543, 2);
+INSERT INTO public.user_data (uid, name, email, password, secque, answer, address, phone, roleid) VALUES (532, 'zxcv', 'aasdfghjkl', '12345', 'wertyuhgf', 'hytrdfvbhy', 'dfghtredvbg', 345676543, 1);
+INSERT INTO public.user_data (uid, name, email, password, secque, answer, address, phone, roleid) VALUES (707, 'Gupta Ji', 'gupta@gmail.com', '123', 'qwertyuiop', 'asdfghjkl', 'alwar', 7777777777, 2);
+
+
+--
+-- TOC entry 3144 (class 2606 OID 16524)
+-- Name: carts cart_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.carts
+    ADD CONSTRAINT cart_id_pk PRIMARY KEY (cart_id);
+
+
+--
+-- TOC entry 3146 (class 2606 OID 16534)
+-- Name: cart_products cart_products_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cart_products
+    ADD CONSTRAINT cart_products_pk PRIMARY KEY (cart_id_ref, product_id_ref) INCLUDE (cart_id_ref, product_id_ref);
+
+
+--
+-- TOC entry 3142 (class 2606 OID 16514)
+-- Name: category category_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.category
+    ADD CONSTRAINT category_pk PRIMARY KEY (cid);
+
+
+--
+-- TOC entry 3148 (class 2606 OID 16552)
+-- Name: orders order_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT order_pk PRIMARY KEY (order_id) INCLUDE (order_id);
+
+
+--
+-- TOC entry 3140 (class 2606 OID 16506)
+-- Name: products products_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_pk PRIMARY KEY (pid);
+
+
+--
+-- TOC entry 3138 (class 2606 OID 16493)
+-- Name: user_data user_data_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_data
+    ADD CONSTRAINT user_data_pk PRIMARY KEY (uid);
+
+
+--
+-- TOC entry 3151 (class 2606 OID 16625)
+-- Name: cart_products cart_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cart_products
+    ADD CONSTRAINT cart_id_fk FOREIGN KEY (cart_id_ref) REFERENCES public.carts(cart_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3153 (class 2606 OID 16615)
+-- Name: orders cart_order_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT cart_order_fk FOREIGN KEY (cart_id_ref) REFERENCES public.carts(cart_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3152 (class 2606 OID 16630)
+-- Name: cart_products cart_product_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cart_products
+    ADD CONSTRAINT cart_product_fk FOREIGN KEY (product_id_ref) REFERENCES public.products(pid) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3149 (class 2606 OID 16605)
+-- Name: products pro_cat_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT pro_cat_fk FOREIGN KEY (pro_cat_ref) REFERENCES public.category(cid) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3150 (class 2606 OID 16610)
+-- Name: carts user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.carts
+    ADD CONSTRAINT user_id_fk FOREIGN KEY (user_id_ref) REFERENCES public.user_data(uid) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3154 (class 2606 OID 16620)
+-- Name: orders user_order_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT user_order_fk FOREIGN KEY (user_id_ref) REFERENCES public.user_data(uid) ON DELETE CASCADE;
+
+
+-- Completed on 2021-02-22 00:14:48 IST
+
+--
+-- PostgreSQL database dump complete
+--
+
